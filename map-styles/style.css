@@ -1,0 +1,85 @@
+body#background {
+  margin: 0;
+  background-color: #435F84;
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+#usa-map {
+  overflow: hidden;
+}
+
+svg {
+  background: none;
+}
+
+h1 {
+    text-align: center;
+    color: #1A80C4;
+    font-family: helvetica, sans-serif;
+}
+
+p {
+  line-height: 1;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+.feature {
+  fill: #081A30;
+}
+
+.mesh {
+  fill: none;
+  stroke: #555;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#test-input-rate {
+  position: absolute;
+  bottom: 50px;
+  right: 40px;
+  background: none;
+  width: 175px;
+}
+
+input[type="text"] {
+  height: 29px;
+  border-radius: 5px;
+  width: 85px;
+  font-size: 15px;
+  border: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #eee;
+}
+
+#attempts,
+#date,
+#time {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #ddd;
+  font-family: helvetica, sans-serif;
+}
+
+#exploding-pa-s {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.player button {
+  background-color: #536F94;
+  padding: 3px 3px;
+}
