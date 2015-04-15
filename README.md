@@ -1,1 +1,1 @@
-## USA map with zoomable states, data points, and tooltips
+## D3.js US map

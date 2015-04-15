@@ -10,10 +10,11 @@ $(function() {
       fadeOutFillColor = '#f59222',
       paused = false,
       time,
-      dataLength = busiestDayZipcodes.length,
       timeOut = 0,
       attempts = 0
 
+var dataLength = busiestDayZipcodes.length;
+console.log(dataLength)
   function setSizes() {
     var windowHeight = $(window).height();
     var windowWidth = $(window).width();
@@ -71,7 +72,6 @@ $(function() {
     .attr("d", path);
 
   function addPointsToMap(data) {
-    console.log(data)
     circles = svgSelection.selectAll("circle")
       .data(data, function(d) {
         return d[0];
@@ -117,15 +117,18 @@ $(function() {
     }
 
     // loop over data forever; loopy()
-    if (attempts > dataLength) {
+    if (attempts >= dataLength) {
       attempts = 0;
     }
-    
-    // busiest day zipcodes
-    var lat = busiestDayZipcodes[attempts][0];
-    var lon = busiestDayZipcodes[attempts][1];
-    time = busiestDayZipcodes[attempts][2];
-    addPointsToMap([[lat, lon]]);
+    try {
+      // busiest day zipcodes
+      var lat = busiestDayZipcodes[attempts][0];
+      var lon = busiestDayZipcodes[attempts][1];
+      time = busiestDayZipcodes[attempts][2];
+      addPointsToMap([[lat, lon]]);
+    } catch(e) {
+      console.log(attempts, e);
+    }
   }
 
   function feedData(data_function) {
