@@ -9,8 +9,6 @@ $(function() {
       prescriberFillColor = '#f59222',
       prescriberFillColor = '#f78126',
       pharmacyFillColor = '#dd1b52',
-      time,
-      timeOut = 500,
       attempts = 0
 
   Pusher.log = function(message) {
@@ -19,31 +17,29 @@ $(function() {
     }
   };
   // internal demo pusher
-  // var pusher = new Pusher('6191e54206ff58d25359', {
-  //   encrypted: true
-  // });
-
-  // real data pusher
-  var pusher = new Pusher('761da62a8a4edd4c1de2', {
+  var pusher = new Pusher('6191e54206ff58d25359', {
     encrypted: true
   });
+
+  // real data pusher
+  // var pusher = new Pusher('761da62a8a4edd4c1de2', {
+  //   encrypted: true
+  // });
 
   var channel = pusher.subscribe('pa_channel');
 
   channel.bind('pa_event', function(data) {
-    console.log(geodata[data.zipcode]);
-    console.log(data.is_retrospective);
     if(data.is_retrospective) {
       dotColor = pharmacyFillColor;
     } else {
       dotColor = prescriberFillColor;
     }
-    updateTime();
-    addPointsToMap([geodata[data.zipcode]]);
+    try {
+      addPointsToMap([geodata[data.zipcode]]);
+    } catch(e) {
+      console.log(attempts, e);
+    }
   });
-
-
-  var dataLength = busiestDayZipcodes.length;
   
   function setSizes() {
     var windowHeight = $(window).height();
@@ -136,44 +132,25 @@ $(function() {
     circles.exit()
   }
 
+  updateTime();
+  
   function updateTime() {
     var datetime = new Date(Date.now());
     var date = datetime.toLocaleDateString();
-    var realTime = datetime.toLocaleTimeString();
+    var time = datetime.toLocaleTimeString();
 
     $('#date').text(date)
-    $('#time').text(realTime);
-  }
-
-  function data_demo() {
-    attempts ++;
-    $('#attempts').text((attempts).toString() + ' PAs created');
-    if (attempts % 20 === 0) {
-      updateTime();
-    }
-    updateTime();
-
-    // loop over data forever; loopy()
-    if (attempts >= dataLength) {
-      attempts = 0;
-    }
-    try {
-      // busiest day zipcodes
-      var lat = busiestDayZipcodes[attempts][0];
-      var lon = busiestDayZipcodes[attempts][1];
-      time = busiestDayZipcodes[attempts][2];
-      addPointsToMap([[lat, lon]]);
-    } catch(e) {
-      console.log(attempts, e);
-    }
-  }
-
-  function feedData(data_function) {
-    data_function();
+    $('#time').text(time);
     setTimeout(function() {
-      feedData(data_function);
-    }, timeOut);
+      updateTime();
+    }, 1000);
   }
 
-  // feedData(data_demo);
+  // reloadPage();
+
+  // function reloadPage() {
+  //   setTimeout(function() {
+  //     document.location.reload(true);
+  //   }, 3600000);
+  // }
 });
