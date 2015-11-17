@@ -20,12 +20,12 @@ $(function() {
     }
   };
 
-  var pusher = new Pusher('6191e54206ff58d25359', {
-    encrypted: true
-  });
-  // var pusher = new Pusher('761da62a8a4edd4c1de2', {
+  // var pusher = new Pusher('6191e54206ff58d25359', {
   //   encrypted: true
   // });
+  var pusher = new Pusher('761da62a8a4edd4c1de2', {
+    encrypted: true
+  });
 
   var channel = pusher.subscribe('pa_channel');
 
