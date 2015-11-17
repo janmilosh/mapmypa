@@ -5,19 +5,25 @@
     <link rel="stylesheet" href="map-styles/style.css" type="text/css" />
   </head>
   <body id="background">
-    <div id="exploding-pa-s"></div>
+    <div id="color-key">
+      <div class="pink"></div>
+      <div class="orange"></div>
+    </div>
+
     <div id="test-input-rate">
       <img src="images/CoverMyMeds_Logo.png" alt="logo">
-      <p id="date">January 20, 2015</p>
-      <p id="time">12:00 am</p>
-      <p id="attempts">&nbsp;</p>
+      <p id="date">&nbsp;</p>
+      <p id="time">&nbsp;</p>
+      <!-- <p id="attempts">&nbsp;</p> -->
     </div>
     <div id="usa-map">
     </div>
     <script src="map-scripts/jquery.min.js"></script>
     <script src="map-scripts/d3.v3.min.js"></script>
+    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
     <script src="map-scripts/map-path.js"></script>
     <script src="map-scripts/topojson.v1.min.js"></script>
+    <script src="map-scripts/zipcode.js"></script>
     <script src="map-scripts/busiest_day_zipcodes.js"></script>
     <script src="map-scripts/d3-map.js"></script>
   </body>

@@ -5,16 +5,45 @@ $(function() {
       circleSmall,
       circleLarge,
       pathWidth = 0.25,
-      exploding = false,
-      initialFillColor = '#f59222',
-      fadeOutFillColor = '#f59222',
-      paused = false,
+      dotColor,
+      nonRetroFillColor = '#f59222',
+      // fadeOutFillColor = '#f59222',
+      retroFillColor = '#DD1B52',
+      // fadeOutFillColor2 = '#DD1B52',
       time,
-      timeOut = 0,
+      timeOut = 500,
       attempts = 0
 
-var dataLength = busiestDayZipcodes.length;
-console.log(dataLength)
+  Pusher.log = function(message) {
+    if (window.console && window.console.log) {
+      window.console.log(message);
+    }
+  };
+
+  var pusher = new Pusher('6191e54206ff58d25359', {
+    encrypted: true
+  });
+  // var pusher = new Pusher('761da62a8a4edd4c1de2', {
+  //   encrypted: true
+  // });
+
+  var channel = pusher.subscribe('pa_channel');
+
+  channel.bind('pa_event', function(data) {
+    console.log(geodata[data.zipcode]);
+    console.log(data.is_retrospective);
+    if(data.is_retrospective) {
+      dotColor = retroFillColor;
+    } else {
+      dotColor = nonRetroFillColor;
+    }
+    updateTime();
+    addPointsToMap([geodata[data.zipcode]]);
+  });
+
+
+  var dataLength = busiestDayZipcodes.length;
+  
   function setSizes() {
     var windowHeight = $(window).height();
     var windowWidth = $(window).width();
@@ -24,7 +53,7 @@ console.log(dataLength)
       width = 1000;
     }
     height = width * 0.6;
-    circleSmall = 3 * width/1000;
+    circleSmall = 4 * width/1000;
     circleLarge = circleSmall;
     strokeWidth = 1;
 
@@ -88,25 +117,31 @@ console.log(dataLength)
         return projection([d[1], d[0]])[1];
       })
       .style("opacity", 1)
-      .attr("fill", initialFillColor)
+      .attr("fill", dotColor)
       .attr("r", 0)
       .transition()
+      .ease("elastic", 3, 0.3)
       .duration(1000)
       .attr("r", circleSmall);
 
     circles.transition()
-      .delay(1000)
-      .duration(2000)
+      .delay(55000)
+      .duration(5000)
       .style("opacity", 0)
       .attr("r", circleLarge)
-      .attr('fill', fadeOutFillColor)
+      .attr('fill', dotColor)
       .remove()
 
     circles.exit()
   }
 
   function updateTime() {
-    $('#time').text(time);
+    var datetime = new Date(Date.now());
+    var date = datetime.toLocaleDateString();
+    var realTime = datetime.toLocaleTimeString();
+
+    $('#date').text(date)
+    $('#time').text(realTime);
   }
 
   function data_demo() {
@@ -115,6 +150,7 @@ console.log(dataLength)
     if (attempts % 20 === 0) {
       updateTime();
     }
+    updateTime();
 
     // loop over data forever; loopy()
     if (attempts >= dataLength) {
@@ -138,5 +174,5 @@ console.log(dataLength)
     }, timeOut);
   }
 
-  feedData(data_demo);
+  // feedData(data_demo);
 });
