@@ -16,6 +16,28 @@ svg {
   background: none;
 }
 
+#prescriber span {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #f78126;
+  margin-right: 10px;
+  position: relative;
+  top: 3px;
+}
+
+#pharmacy span {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #dd1b52;
+  margin-right: 10px;
+  position: relative;
+  top: 3px;
+}
+
 h1 {
     text-align: center;
     color: #1A80C4;
@@ -63,11 +85,17 @@ input[type="text"] {
 
 #attempts,
 #date,
-#time {
+#time,
+#prescriber,
+#pharmacy {
   margin: 0 0 8px;
   font-size: 20px;
   color: #ddd;
   font-family: helvetica, sans-serif;
+}
+
+#date {
+  margin-top: 20px;
 }
 
 #exploding-pa-s {

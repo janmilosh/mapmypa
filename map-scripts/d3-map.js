@@ -6,7 +6,6 @@ $(function() {
       circleLarge,
       pathWidth = 0.25,
       dotColor,
-      prescriberFillColor = '#f59222',
       prescriberFillColor = '#f78126',
       pharmacyFillColor = '#dd1b52',
       attempts = 0
