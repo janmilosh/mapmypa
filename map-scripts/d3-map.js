@@ -6,10 +6,9 @@ $(function() {
       circleLarge,
       pathWidth = 0.25,
       dotColor,
-      nonRetroFillColor = '#f59222',
-      // fadeOutFillColor = '#f59222',
-      retroFillColor = '#DD1B52',
-      // fadeOutFillColor2 = '#DD1B52',
+      prescriberFillColor = '#f59222',
+      prescriberFillColor = '#f78126',
+      pharmacyFillColor = '#dd1b52',
       time,
       timeOut = 500,
       attempts = 0
@@ -19,10 +18,12 @@ $(function() {
       window.console.log(message);
     }
   };
-
+  // internal demo pusher
   // var pusher = new Pusher('6191e54206ff58d25359', {
   //   encrypted: true
   // });
+
+  // real data pusher
   var pusher = new Pusher('761da62a8a4edd4c1de2', {
     encrypted: true
   });
@@ -33,9 +34,9 @@ $(function() {
     console.log(geodata[data.zipcode]);
     console.log(data.is_retrospective);
     if(data.is_retrospective) {
-      dotColor = retroFillColor;
+      dotColor = pharmacyFillColor;
     } else {
-      dotColor = nonRetroFillColor;
+      dotColor = prescriberFillColor;
     }
     updateTime();
     addPointsToMap([geodata[data.zipcode]]);
