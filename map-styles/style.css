@@ -18,24 +18,20 @@ svg {
 
 #prescriber span {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   border-radius: 50%;
   background: #f78126;
   margin-right: 10px;
-  position: relative;
-  top: 3px;
 }
 
 #pharmacy span {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   border-radius: 50%;
   background: #dd1b52;
   margin-right: 10px;
-  position: relative;
-  top: 3px;
 }
 
 h1 {
@@ -96,15 +92,6 @@ input[type="text"] {
 
 #date {
   margin-top: 20px;
-}
-
-#exploding-pa-s {
-  height: 50px;
-  width: 50px;
-  position: absolute;
-  top: 0;
-  background: none;
-  cursor: pointer;
 }
 
 .player button {
