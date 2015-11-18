@@ -16,14 +16,14 @@ $(function() {
     }
   };
   // internal demo pusher
-  // var pusher = new Pusher('a2fd2a2b275b3d4d1d98', {
-  //   encrypted: true
-  // });
-
-  // real data pusher
-  var pusher = new Pusher('519c06139a5c1c97a3d9', {
+  var pusher = new Pusher('a2fd2a2b275b3d4d1d98', {
     encrypted: true
   });
+
+  // real data pusher
+  // var pusher = new Pusher('519c06139a5c1c97a3d9', {
+  //   encrypted: true
+  // });
 
   var channel = pusher.subscribe('pa_channel');
 
