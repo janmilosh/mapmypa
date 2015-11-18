@@ -16,14 +16,14 @@ $(function() {
     }
   };
   // internal demo pusher
-  // var pusher = new Pusher('6191e54206ff58d25359', {
-  //   encrypted: true
-  // });
-
-  // real data pusher
-  var pusher = new Pusher('761da62a8a4edd4c1de2', {
+  var pusher = new Pusher('a2fd2a2b275b3d4d1d98', {
     encrypted: true
   });
+
+  // real data pusher
+  // var pusher = new Pusher('761da62a8a4edd4c1de2', {
+  //   encrypted: true
+  // });
 
   var channel = pusher.subscribe('pa_channel');
 
@@ -36,7 +36,7 @@ $(function() {
     try {
       addPointsToMap([geodata[data.zipcode]]);
     } catch(e) {
-      console.log(attempts, e);
+      console.log(data.zipcode + 'is not a valid zipcode.')
     }
   });
   
